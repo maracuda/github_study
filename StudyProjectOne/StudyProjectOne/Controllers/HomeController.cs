@@ -13,11 +13,24 @@ namespace StudyProjectOne.Controllers
     {
         //
         // GET: /Home/
+        private string _repoPath;
+        private PrefixViewer _prefixViewer;
+        public HomeController()
+        {
+            _repoPath = AppDomain.CurrentDomain.BaseDirectory + "../Input.txt";
+            _prefixViewer = new PrefixViewer(new FileRepository(_repoPath));
+        }
 
         public ActionResult Index()
         {
-            var prefix_viewer = new PrefixViewer(new FileRepository(AppDomain.CurrentDomain.BaseDirectory + "../Input.txt"));
-            return View(prefix_viewer.GetPrefixies());
+            
+            return View(_prefixViewer.GetPrefixies());
+        }
+
+        public ActionResult RemovePrefix(string id)
+        {
+            _prefixViewer.RemovePrefix(id);
+            return PartialView(_prefixViewer.GetPrefixies());
         }
 
     }

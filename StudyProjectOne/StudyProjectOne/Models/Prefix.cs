@@ -3,6 +3,9 @@ using System.Net;
 
 namespace StudyProjectOne.Models
 {
+    /// <summary>
+    /// Класс префикса, хранит адрес сети в числовом виде
+    /// </summary>
     public class Prefix
     {
         public Prefix(string id, string prefix_string)
