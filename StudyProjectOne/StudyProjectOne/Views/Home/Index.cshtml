@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@using StudyProjectOne.Models
+@model List<StudyProjectOne.Models.Prefix>
+
+<h2>Index</h2>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#prefixTable').DataTable();
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    <table id="prefixTable">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Prefix</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model)
+            {
+                <tr>
+                    <td>@line.Id</td>
+                    <td>@line.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+

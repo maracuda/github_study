@@ -130,13 +130,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Prefix\IPrefix.cs" />
-    <Compile Include="Models\Prefix\PrefixBase.cs" />
-    <Compile Include="Models\Prefix\PrefixV4.cs" />
+    <Compile Include="Models\Prefix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\FileRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\RepositoryEntity.cs" />
+    <Compile Include="Services\PrefixViewer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -181,6 +180,8 @@
     <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.dataTables.min.css" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
@@ -222,6 +223,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

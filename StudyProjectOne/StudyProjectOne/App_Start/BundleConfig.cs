@@ -18,6 +18,7 @@ namespace StudyProjectOne
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+
             // Используйте версию Modernizr для разработчиков, чтобы учиться работать. Когда вы будете готовы перейти к работе,
             // используйте средство построения на сайте http://modernizr.com, чтобы выбрать только нужные тесты.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
