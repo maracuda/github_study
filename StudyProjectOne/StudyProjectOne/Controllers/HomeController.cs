@@ -27,11 +27,18 @@ namespace StudyProjectOne.Controllers
             return View(_prefixViewer.GetPrefixies());
         }
 
-        public ActionResult RemovePrefix(string id)
+       /* public ActionResult RemovePrefix(string id)
         {
             _prefixViewer.RemovePrefix(id);
             return PartialView(_prefixViewer.GetPrefixies());
+        }*/
+
+        public JsonResult RemovePrefix(string id)
+        {
+            _prefixViewer.RemovePrefix(id);
+            return Json(_prefixViewer.GetPrefixies(), JsonRequestBehavior.AllowGet);
         }
+
 
     }
 }

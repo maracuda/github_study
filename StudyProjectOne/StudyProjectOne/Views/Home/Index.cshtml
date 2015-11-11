@@ -9,31 +9,63 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#prefixTable').DataTable();
     });
 </script>
 
+
+
+
 <div id="table">
     <table id="prefixTable">
         <thead>
-            <tr>
-                <td>Id</td>
-                <td>Prefix</td>
-                <td>Remove</td>
-            </tr>
+        <tr>
+            <td>Id</td>
+            <td>Prefix</td>
+            <td>Remove</td>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var line in Model)
-            {
-                <tr>
-                    <td>@line.Id</td>
-                    <td>@line.ToString()</td>
-                    <td>@Ajax.ActionLink("Remove", "RemovePrefix", new { id = @line.Id }, new AjaxOptions { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace })</td>
-                </tr>
-            }
+        @foreach (var line in Model)
+        {
+            <tr>
+                <td>@line.Id</td>
+                <td>@line.ToString()</td>
+                <td>@Ajax.ActionLink("Remove", "RemovePrefix", new {id = @line.Id}, new AjaxOptions {OnSuccess = "UpdateMainTable", InsertionMode = InsertionMode.Replace})</td>
+            </tr>
+        }
         </tbody>
     </table>
+
+
+
+
+    <script type="text/javascript">
+    $(function(){
+        $('.remove_button').button().click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("RemovePrefix", "Home")',
+                data: ({id: this.id}),
+                success: UpdateMainTable
+            });
+
+        });
+        $('.remove_button').button();
+    })
+    </script>
+    <script type="text/javascript">
+        function UpdateMainTable(data) {
+            var results = $('#prefixTable'); // получаем нужный элемент
+            results.empty(); //очищаем элемент
+            for (var i = 0; i < data.length; i++) {
+                results.append('<tr><td>' + data[i].Id + '</td><td>' + data[i].Network + '</td>' +
+                    '<td>' + '<button class="remove_button", id=' + data[i].Id + '>Удалить</button>'
+                    + '</td></tr>');
+            }
+        }
+    </script>
 </div>
 
 
