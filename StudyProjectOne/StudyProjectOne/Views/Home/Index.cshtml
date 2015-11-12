@@ -7,66 +7,151 @@
 
 <h2>Index</h2>
 
-
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#prefixTable').DataTable();
+
+        var table = $('#prefixTable').DataTable(
+        {
+            "ajax":
+            {
+                "url":'@Url.Action("ViewPrefix", "Home")',
+                "dataSrc": ""
+            },
+            "columns": [
+            { "data": "Id" },
+            { "data": "Network" }
+            ]
+        
+        });
+
+
+    $('#prefixTable tbody').on('click', 'img.icon-delete', function () {
+        table
+            .row($(this).parents('tr'))
+            .remove()
+            .draw();
+    });
+
     });
 </script>
 
 
-
-
-<div id="table">
-    <table id="prefixTable">
-        <thead>
+<table id="prefixTable" class="display">
+    <thead>
         <tr>
             <td>Id</td>
             <td>Prefix</td>
-            <td>Remove</td>
+            <td></td>
         </tr>
-        </thead>
-        <tbody>
-        @foreach (var line in Model)
-        {
-            <tr>
-                <td>@line.Id</td>
-                <td>@line.ToString()</td>
-                <td>@Ajax.ActionLink("Remove", "RemovePrefix", new {id = @line.Id}, new AjaxOptions {OnSuccess = "UpdateMainTable", InsertionMode = InsertionMode.Replace})</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+    </thead>
+    @*<tbody id="example tbody">
+            @foreach (var line in Model)
+            {
+                <tr>
+                    <td>@line.Id</td>
+                    <td>@line.ToString()</td>
+                    <td><a class="a_jqui" id=@line.Id>Удалить</a></td>
+                </tr>
+            }
+        </tbody>*@
+</table>
+
+<h4>Блок ссылок</h4>
+<p><a class="a_jqui" href="http://google.com">Ссылка 1</a></p>
+<p><a href="http://google.com">Ссылка 2</a></p>
+
+<h4>Блок кнопок</h4>
+<p><button class="button_jqui">Кнопка 1</button></p>
+<p><button>Кнопка 2</button></p>
 
 
 
 
-    <script type="text/javascript">
-    $(function(){
+
+
+<script type="text/javascript">
+    $(function () {
         $('.remove_button').button().click(function (e) {
             e.preventDefault();
             $.ajax({
                 url: '@Url.Action("RemovePrefix", "Home")',
-                data: ({id: this.id}),
+                data: ({ id: this.id }),
                 success: UpdateMainTable
             });
 
         });
         $('.remove_button').button();
     })
-    </script>
-    <script type="text/javascript">
-        function UpdateMainTable(data) {
-            var results = $('#prefixTable'); // получаем нужный элемент
-            results.empty(); //очищаем элемент
-            for (var i = 0; i < data.length; i++) {
-                results.append('<tr><td>' + data[i].Id + '</td><td>' + data[i].Network + '</td>' +
-                    '<td>' + '<button class="remove_button", id=' + data[i].Id + '>Удалить</button>'
-                    + '</td></tr>');
-            }
-        }
-    </script>
-</div>
+</script>
+<script type="text/javascript">
+    function UpdateMainTable(data) {
+        var results = $('#prefixTable'); // получаем нужный элемент
+        //results.empty(); //очищаем элемент
+
+        //results.append('<thead><tr><td>Id</td><td>Prefix</td><td>Remove</td></tr></thead><tbody>');
+        //for (var i = 0; i < data.length; i++) {
+        //    results.append('<tr><td>' + data[i].Id + '</td><td>' + data[i].Network + '</td>' +
+        //        '<td>' + '<a class="a_jqui", id=' + data[i].Id + '>Удалить</button>'
+        //        + '</td></tr>');
+        //    results.append('</tbody>');
+        //}
+        $('.a_jqui').button().click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("RemovePrefix", "Home")',
+                data: ({ id: this.id })
+
+            });
+            $(this).closest('tr').remove();
+        });
+
+        $('#prefixTable').UpdateMainTable();
+    }
+</script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.a_jqui').button().click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("RemovePrefix", "Home")',
+                data: ({ id: this.id })
+            });
+
+            var table = $('#prefixTable').DataTable();
+
+
+
+            table
+                .row($(this).closest('tr'))
+                .remove()
+                .draw();
+
+
+            //table.row('.selected').remove().draw(false);
+            // $(this).closest('tr').remove().draw();
+
+        });
+        $('.button_jqui').button();
+
+        $('.button_jqui').button().click(function (e) {
+            e.preventDefault();
+
+
+            alert($('.a_jqui').text());
+            $('.a_jqui').remove();
+
+
+        });
+    });
+
+
+
+</script>
+
 
 
 

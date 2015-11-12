@@ -33,6 +33,10 @@ namespace StudyProjectOne.Controllers
             return PartialView(_prefixViewer.GetPrefixies());
         }*/
 
+        public JsonResult ViewPrefix()
+        {
+            return Json(_prefixViewer.GetPrefixies(), JsonRequestBehavior.AllowGet);
+        }
         public JsonResult RemovePrefix(string id)
         {
             _prefixViewer.RemovePrefix(id);
