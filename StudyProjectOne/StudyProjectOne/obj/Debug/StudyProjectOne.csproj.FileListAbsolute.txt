@@ -75,3 +75,46 @@ C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\S
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.csprojResolveAssemblyReference.cache
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.dll
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.pdb
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\StudyProjectOne.dll.config
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\StudyProjectOne.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\StudyProjectOne.pdb
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\Antlr3.Runtime.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\EntityFramework.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\Microsoft.Web.Infrastructure.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\Newtonsoft.Json.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Net.Http.Formatting.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Http.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Http.WebHost.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Mvc.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Optimization.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Providers.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Razor.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.WebPages.Deployment.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.WebPages.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.WebPages.Razor.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\WebGrease.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\EntityFramework.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\Newtonsoft.Json.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Net.Http.Formatting.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Http.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Http.WebHost.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Mvc.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.Razor.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.WebPages.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.WebPages.Deployment.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\System.Web.WebPages.Razor.xml
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\EntityFramework.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Net.Http.Formatting.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.Http.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.Http.WebHost.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.Mvc.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.Optimization.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.Providers.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.Razor.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.WebPages.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.WebPages.Deployment.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.WebPages.Razor.resources.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.csprojResolveAssemblyReference.cache
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.pdb
