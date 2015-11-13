@@ -35,12 +35,11 @@ namespace StudyProjectOne.Controllers
 
         public JsonResult ViewPrefix()
         {
-            return Json(_prefixViewer.GetPrefixies(), JsonRequestBehavior.AllowGet);
+            return Json(_prefixViewer.GetPrefixies().Select(s => new {Id = s.Id, Network = s.ToString()}), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult RemovePrefix(string id)
+        public void RemovePrefix(string id)
         {
             _prefixViewer.RemovePrefix(id);
-            return Json(_prefixViewer.GetPrefixies(), JsonRequestBehavior.AllowGet);
         }
 
 

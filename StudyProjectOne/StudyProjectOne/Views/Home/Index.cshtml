@@ -28,26 +28,23 @@
         $('#prefixTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-                $("#remove_button").prop("disabled", true);
-                $("#edit_button").prop("disabled", true);
-                $('#remove_button').removeAttr('disabled');
-                
+                $("#edit_button").attr("disabled", "disabled");
+                $("#remove_button").attr("disabled", "disabled");
+
             }
             else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                $("#remove_button").prop("disabled", false);
-                $('#remove_button').removeAttr('disabled');
-
-                $("#edit_button").prop("disabled", false);
+                $("#edit_button").removeAttr("disabled");
+                $("#remove_button").removeAttr("disabled");
             }
         });
 
-        $('.button_jqui').button();
+  //      $('.button_jqui').button();
 
 
-        $("#remove_button").prop("disabled", false);
-        $("#edit_button").prop("disabled", false);
+        $("#remove_button").attr("disabled", "disbled");
+        $("#edit_button").attr("disabled", "disbled");
 
         $('#remove_button').click(function (e) {
             e.preventDefault();
@@ -90,7 +87,7 @@
 
 <p>
     <button class="button_jqui">Добавить</button>
-    <button disabled="disabled" class="button_jqui" id="edit_button" >Изменить</button>
+    <button  class="button_jqui" id="edit_button" >Изменить</button>
     <button  class="button_jqui" id="remove_button">Удалить</button>
 <p>
 
