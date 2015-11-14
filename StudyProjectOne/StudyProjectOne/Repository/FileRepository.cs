@@ -21,7 +21,7 @@ namespace StudyProjectOne.Repository
         public IEnumerable Read()
         {
             var reader = new StreamReader(File.OpenRead(_path));
-            var lines_to_return = (from line in reader.ReadToEnd().Split('\n').Where(t=>t != "").ToList() let id = line.Split(',')[0] let prefix = line.Split(',')[1] select new RepositoryEntity(){Id = id, Prefix = prefix}).ToList();
+            var lines_to_return = (from line in reader.ReadToEnd().Split('\n').Where(t=>t != "").ToList() let id = line.Split(',')[0] let prefix = line.Split(',')[1] select new RepositoryEntity(){Id = id, Network = prefix}).ToList();
             reader.Close();
             return lines_to_return;
         }

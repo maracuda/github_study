@@ -11,6 +11,6 @@ namespace StudyProjectOne.Repository
     public class RepositoryEntity
     {
         public string Id { get; set; }
-        public string Prefix { get; set; }
+        public string Network { get; set; }
     }
 }
