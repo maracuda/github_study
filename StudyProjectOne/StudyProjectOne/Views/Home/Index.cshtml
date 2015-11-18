@@ -1,20 +1,12 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-
-@using StudyProjectOne.Models
-@model List<Prefix>
-
-<h2>Index</h2>
+<h2>Prefix task</h2>
 
 <script type="text/javascript">
     $(document).ready(function () {
-
-
-        $("#remove_button").button({
-            disabled: true
-        });
-        $("#edit_button").button({
+        $(".button_jqui").button();
+        $("#remove_button, #edit_button").button({
             disabled: true
         });
 
@@ -22,37 +14,26 @@
         {
             "ajax":
             {
-                "url": '@Url.Action("ViewPrefix", "Home")',
+                "url": '@Url.Action("ViewPrefixes", "Home")',
                 "dataSrc": ""
             },
             "columns": [
-            { "data": "Id" },
-            { "data": "Network" }
+                { "data": "Id" },
+                { "data": "PrefixString" }
             ]
         });
-
-
 
         $('#prefixTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-                $("#edit_button").button("option", "disabled", true);
-                $("#remove_button").button("option", "disabled", true);
-
+                $("#edit_button, #remove_button").button("option", "disabled", true);
             }
             else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                $("#edit_button").button("option", "disabled", false);
-                $("#remove_button").button("option", "disabled", false);
+                $("#edit_button, #remove_button").button("option", "disabled", false);
             }
         });
-
-        //     $('.button_jqui').button();
-
-
-        $("#remove_button").attr("disabled", "disbled");
-       // $("#edit_button").attr("disabled", "disbled");
 
         $('#remove_button').click(function (e) {
             e.preventDefault();
@@ -61,24 +42,10 @@
                 url: '@Url.Action("RemovePrefix", "Home")',
                 data: ({ id: $('#prefixTable .selected td:eq(0)').text() })
             });
+            $("#edit_button, #remove_button").button("option", "disabled", true);
             table.row('.selected').remove().draw(false);
         });
 
-
-
-        //$('#edit_button').click(function (e) {
-        //    e.preventDefault();
-
-        //    $('#edit_Id').val($('#prefixTable .selected td:eq(0)').text());
-        //    $('#edit_network').val($('#prefixTable .selected td:eq(1)').text());
-        //    $('#edit_div').show();
-        //});
-
-        //$('#edit_ok').click(function (e) {
-        //    e.preventDefault();
-
-        //    $('#edit_div').hide();
-        //});
 
     });
 </script>
@@ -86,9 +53,6 @@
 <script>
     $(function () {
         var dialog, form,
-
-            // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
-
             prefix_id = $("#adding_form #prefix_id"),
             prefix_string = $("#adding_form #prefix_string"),
             all_fields = $([]).add(prefix_id).add(prefix_string),
@@ -132,12 +96,12 @@
             valid = valid && checkLength(prefix_string, "prefix", 9, 18);
 
             //  valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
-          //  valid = valid && checkRegexp(prefix_string, [], "eg. ui@jquery.com");
+            //  valid = valid && checkRegexp(prefix_string, [], "eg. ui@jquery.com");
             //  valid = valid && checkRegexp(password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9");
 
             if (valid) {
                 var t = $("#prefixTable").DataTable();
-                var json = { "Id": prefix_id.val(), "Network": prefix_string.val() };
+                var json = { "Id": prefix_id.val(), "PrefixString": prefix_string.val() };
                 t.row.add(json).draw(false);
                 $.ajax({
                     url: '@Url.Action("AddPrefix", "Home")',
@@ -181,16 +145,10 @@
 <script>
     $(function () {
         var dialog, form,
-
-            // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
-
-            
             prefix_string = $("#editing_form #editing_prefix_string"),
-         
-
             all_fields = $([]).add(prefix_id).add(prefix_string),
             tips = $(".validateTips");
-        
+
         function updateTips(t) {
             tips
                 .text(t)
@@ -225,7 +183,7 @@
             var valid = true;
             all_fields.removeClass("ui-state-error");
 
-           // valid = valid && checkLength(prefix_id, "Id", 1, 255);
+            // valid = valid && checkLength(prefix_id, "Id", 1, 255);
             //valid = valid && checkLength(prefix_string, "prefix", 9, 18);
 
             //  valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
@@ -238,8 +196,8 @@
                 if (prefix_string.val() != cell.text()) {
 
                     var json = [
-                    { "Id": prefix_id.text(), "Network": cell.text() },
-                    { "Id": prefix_id.text(), "Network": prefix_string.val() }
+                        { "Id": prefix_id.text(), "PrefixString": cell.text() },
+                        { "Id": prefix_id.text(), "PrefixString": prefix_string.val() }
                     ];
                     $.ajax({
                         url: '@Url.Action("UpdatePrefix", "Home")',
@@ -283,11 +241,48 @@
     });
 </script>
 
+<script type="text/javascript">
+    $(function () {
+        var table = $('#spanningTable').DataTable({
+            "dataSrc": "",
+            "columns": [
+            { "data": "Id" },
+            { "data": "PrefixString" }
+            ]
+        });
+        var dialog = $("#spanning_dialog_form").dialog({
+            autoOpen: false,
+            height: 450,
+            width: 450,
+            modal: true,
+            buttons: {
+                Cancel: function () {
+                    dialog.dialog("close");
+                }
+            },
+            close: function () {
+            }
 
+        });
+        $("#spanning_button").button().on("click", function () {
+
+            table.clear();
+            $.ajax({
+
+                "url": '@Url.Action("ViewSpanningPrefixes", "Home")',
+                data: '{ input: 0 }',
+                success: function (data) {
+                    table.rows.add(data).draw();
+                }
+            });
+            dialog.dialog("open");
+        });
+    });
+</script>
 <div id="adding_dialog_form" title="Add prefix">
     <p class="validateTips">All form fields are required.</p>
 
-    <form id ="adding_form">
+    <form id="adding_form">
         <fieldset>
             <label for="prefix_id">Id</label>
             <input type="text" name="Id" id="prefix_id" class="text ui-widget-content ui-corner-all">
@@ -310,31 +305,48 @@
             <input type="text" name="editing_prefix_string" id="editing_prefix_string" class="text ui-widget-content ui-corner-all">
 
             <!-- Allow form submission with keyboard without duplicating the dialog button -->
-            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            <input type="submit" tabindex="-1" style="position: absolute; top: -1000px">
         </fieldset>
     </form>
 </div>
 
-<table id="prefixTable" class="display dt-left" style="width: 50%; float: left">
-    <thead>
-        <tr>
-            <td>Id</td>
-            <td>Prefix</td>
-        </tr>
-    </thead>
-</table>
+<div id="spanning_dialog_form" title="View spanninng prefixies">
+    <form id="">
+        <table id="spanningTable" class="display dt-left" style="width: 80%; float: left">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Prefix</td>
+                </tr>
+            </thead>
+        </table>
+    </form>
+</div>
 
+<div style="width: min-content * 2">
+    <table id="prefixTable" class="display dt-left" style="width: 50%; float: left">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Prefix</td>
+            </tr>
+        </thead>
+    </table>
+</div>
 <p>
     <button class="button_jqui" id="add_button">Добавить</button>
     <button class="button_jqui" id="edit_button">Изменить</button>
     <button class="button_jqui" id="remove_button">Удалить</button>
 <p>
+<p>
+    <button class="button_jqui" id="spanning_button">Сгруппировать подсети</button>
+</p>
 
-    <div id="edit_div" style="border: solid 1px black; width: 200px;padding: 5px; display:none">
-        <input type="text" id="edit_Id" /><br /><br />
-        <input type="text" id="edit_network" /><br /><br />
-        <button class="button_jqui" id="edit_ok">Ok</button>
-    </div>
+<div id="edit_div" style="border: solid 1px black; width: 200px;padding: 5px; display:none">
+    <input type="text" id="edit_Id" /><br /><br />
+    <input type="text" id="edit_network" /><br /><br />
+    <button class="button_jqui" id="edit_ok">Ok</button>
+</div>
 
 
 

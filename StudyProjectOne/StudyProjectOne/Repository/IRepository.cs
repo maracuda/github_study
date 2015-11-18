@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StudyProjectOne.Models;
+﻿using System.Collections.Generic;
 
 namespace StudyProjectOne.Repository
 {
     /// <summary>
-    /// Интерфейс репозитория
+    ///     Интерфейс репозитория
     /// </summary>
-    interface IRepository
+    internal interface IRepository
     {
-        IEnumerable Read();
-        void Update(ICollection<Prefix> collection_to_update);
-        void Insert(IEnumerable collection_to_insert);
-        void Remove(IEnumerable collection_to_remove);
+        ICollection<RepositoryEntity> Read();
+        void Update(ICollection<RepositoryEntity> collection_to_update);
+        void Insert(ICollection<RepositoryEntity> collection_to_insert);
+        void Remove(ICollection<RepositoryEntity> collection_to_remove);
     }
 }

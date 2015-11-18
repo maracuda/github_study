@@ -12,49 +12,40 @@ namespace StudyProjectOne.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-        private string _repoPath;
-        private PrefixViewer _prefixViewer;
+        private readonly PrefixManipulator _prefixManipulator;
         public HomeController()
         {
-            _repoPath = AppDomain.CurrentDomain.BaseDirectory + "../Input.txt";
-            _prefixViewer = new PrefixViewer(new FileRepository(_repoPath));
+            var repo_path = AppDomain.CurrentDomain.BaseDirectory + "../Input.txt";
+            _prefixManipulator = new PrefixManipulator(new FileRepository(repo_path));
         }
 
         public ActionResult Index()
         {
-
-            return View(_prefixViewer.GetPrefixies());
+            return View();
         }
-
-        /* public ActionResult RemovePrefix(string id)
-         {
-             _prefixViewer.RemovePrefix(id);
-             return PartialView(_prefixViewer.GetPrefixies());
-         }*/
-
-        public JsonResult ViewPrefix()
+        
+        public JsonResult ViewPrefixes()
         {
-            return Json(_prefixViewer.GetPrefixies().Select(s => new { Id = s.Id, Network = s.ToString() }), JsonRequestBehavior.AllowGet);
+            return Json(_prefixManipulator.PrefixViewList, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ViewSpanningPrefixes()
+        {
+            return Json(_prefixManipulator.SpanningDict().Select(t => new PrefixViewModel(t.Key.Id, t.Key.PrefixString)), JsonRequestBehavior.AllowGet);
         }
         public void RemovePrefix(string id)
         {
-            _prefixViewer.RemovePrefix(id);
+            _prefixManipulator.RemovePrefix(id);
         }
 
-        public void AddPrefix(RepositoryEntity prefix)
+        public void AddPrefix(PrefixViewModel prefix_view)
         {
-            _prefixViewer.AddPrefix(new Prefix(prefix.Id, prefix.Network));
+            _prefixManipulator.AddPrefix(prefix_view);
         }
 
         public void UpdatePrefix(string json_string)
         {
-            var prefix_pair = JsonConvert.DeserializeObject<List<RepositoryEntity>>(json_string);
-
-
-            _prefixViewer.UpdatePrefix(new Prefix(prefix_pair.First().Id, prefix_pair.First().Network),
-                 new Prefix(prefix_pair.Last().Id, prefix_pair.Last().Network));
+            var prefix_pair = JsonConvert.DeserializeObject<List<PrefixViewModel>>(json_string);
+            _prefixManipulator.UpdatePrefix(prefix_pair.First(), prefix_pair.Last());
         }
 
     }
