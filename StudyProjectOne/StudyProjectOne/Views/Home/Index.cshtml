@@ -10,6 +10,14 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+
+        $("#remove_button").button({
+            disabled: true
+        });
+        $("#edit_button").button({
+            disabled: true
+        });
+
         var table = $('#prefixTable').DataTable(
         {
             "ajax":
@@ -28,23 +36,23 @@
         $('#prefixTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-                $("#edit_button").attr("disabled", "disabled");
-                $("#remove_button").attr("disabled", "disabled");
+                $("#edit_button").button("option", "disabled", true);
+                $("#remove_button").button("option", "disabled", true);
 
             }
             else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                $("#edit_button").removeAttr("disabled");
-                $("#remove_button").removeAttr("disabled");
+                $("#edit_button").button("option", "disabled", false);
+                $("#remove_button").button("option", "disabled", false);
             }
         });
 
-   //     $('.button_jqui').button();
+        //     $('.button_jqui').button();
 
 
         $("#remove_button").attr("disabled", "disbled");
-        $("#edit_button").attr("disabled", "disbled");
+       // $("#edit_button").attr("disabled", "disbled");
 
         $('#remove_button').click(function (e) {
             e.preventDefault();
@@ -58,23 +66,254 @@
 
 
 
-        $('#edit_button').click(function (e) {
-            e.preventDefault();
+        //$('#edit_button').click(function (e) {
+        //    e.preventDefault();
 
-            $('#edit_Id').val($('#prefixTable .selected td:eq(0)').text());
-            $('#edit_network').val($('#prefixTable .selected td:eq(1)').text());
-            $('#edit_div').show();
-        });
+        //    $('#edit_Id').val($('#prefixTable .selected td:eq(0)').text());
+        //    $('#edit_network').val($('#prefixTable .selected td:eq(1)').text());
+        //    $('#edit_div').show();
+        //});
 
-        $('#edit_ok').click(function (e) {
-            e.preventDefault();
+        //$('#edit_ok').click(function (e) {
+        //    e.preventDefault();
 
-            $('#edit_div').hide();
-        });
+        //    $('#edit_div').hide();
+        //});
 
     });
 </script>
 
+<script>
+    $(function () {
+        var dialog, form,
+
+            // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
+
+            prefix_id = $("#adding_form #prefix_id"),
+            prefix_string = $("#adding_form #prefix_string"),
+            all_fields = $([]).add(prefix_id).add(prefix_string),
+            tips = $(".validateTips");
+
+        function updateTips(t) {
+            tips
+                .text(t)
+                .addClass("ui-state-highlight");
+            setTimeout(function () {
+                tips.removeClass("ui-state-highlight", 1500);
+            }, 500);
+        }
+
+        function checkLength(o, n, min, max) {
+            if (o.val().length > max || o.val().length < min) {
+                o.addClass("ui-state-error");
+                updateTips("Length of " + n + " must be between " +
+                    min + " and " + max + ".");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkRegexp(o, regexp, n) {
+            if (!(regexp.test(o.val()))) {
+                o.addClass("ui-state-error");
+                updateTips(n);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function addPrefix() {
+            var valid = true;
+            all_fields.removeClass("ui-state-error");
+
+            valid = valid && checkLength(prefix_id, "Id", 1, 255);
+            valid = valid && checkLength(prefix_string, "prefix", 9, 18);
+
+            //  valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
+          //  valid = valid && checkRegexp(prefix_string, [], "eg. ui@jquery.com");
+            //  valid = valid && checkRegexp(password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9");
+
+            if (valid) {
+                var t = $("#prefixTable").DataTable();
+                var json = { "Id": prefix_id.val(), "Network": prefix_string.val() };
+                t.row.add(json).draw(false);
+                $.ajax({
+                    url: '@Url.Action("AddPrefix", "Home")',
+                    dataType: 'json',
+                    data: (json)
+                });
+
+                dialog.dialog("close");
+            }
+            return valid;
+        }
+
+        dialog = $("#adding_dialog_form").dialog({
+            autoOpen: false,
+            height: 350,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Add": addPrefix,
+                Cancel: function () {
+                    dialog.dialog("close");
+                }
+            },
+            close: function () {
+                form[0].reset();
+                all_fields.removeClass("ui-state-error");
+            }
+        });
+
+        form = dialog.find("#adding_form").on("submit", function (event) {
+            event.preventDefault();
+            addPrefix();
+        });
+
+        $("#add_button").button().on("click", function () {
+            dialog.dialog("open");
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        var dialog, form,
+
+            // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
+
+            
+            prefix_string = $("#editing_form #editing_prefix_string"),
+         
+
+            all_fields = $([]).add(prefix_id).add(prefix_string),
+            tips = $(".validateTips");
+        
+        function updateTips(t) {
+            tips
+                .text(t)
+                .addClass("ui-state-highlight");
+            setTimeout(function () {
+                tips.removeClass("ui-state-highlight", 1500);
+            }, 500);
+        }
+
+        function checkLength(o, n, min, max) {
+            if (o.val().length > max || o.val().length < min) {
+                o.addClass("ui-state-error");
+                updateTips("Length of " + n + " must be between " +
+                    min + " and " + max + ".");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkRegexp(o, regexp, n) {
+            if (!(regexp.test(o.val()))) {
+                o.addClass("ui-state-error");
+                updateTips(n);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function editPrefix() {
+            var valid = true;
+            all_fields.removeClass("ui-state-error");
+
+           // valid = valid && checkLength(prefix_id, "Id", 1, 255);
+            //valid = valid && checkLength(prefix_string, "prefix", 9, 18);
+
+            //  valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
+            //  valid = valid && checkRegexp(prefix_string, [], "eg. ui@jquery.com");
+            //  valid = valid && checkRegexp(password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9");
+
+            if (valid) {
+                var cell = $('#prefixTable .selected td:eq(1)'),
+                    prefix_id = $('#prefixTable .selected td:eq(0)');
+                if (prefix_string.val() != cell.text()) {
+
+                    var json = [
+                    { "Id": prefix_id.text(), "Network": cell.text() },
+                    { "Id": prefix_id.text(), "Network": prefix_string.val() }
+                    ];
+                    $.ajax({
+                        url: '@Url.Action("UpdatePrefix", "Home")',
+                        data: ({ json_string: JSON.stringify(json) })
+                    });
+                    cell.text(prefix_string.val());
+                }
+                dialog.dialog("close");
+
+
+            }
+            return valid;
+        }
+
+        dialog = $("#editing_dialog_form").dialog({
+            autoOpen: false,
+            height: 350,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Edit": editPrefix,
+                Cancel: function () {
+                    dialog.dialog("close");
+                }
+            },
+            close: function () {
+                form[0].reset();
+                all_fields.removeClass("ui-state-error");
+            }
+        });
+
+        form = dialog.find("#editing_form").on("submit", function (event) {
+            event.preventDefault();
+            editPrefix();
+        });
+
+        $("#edit_button").button().on("click", function () {
+            $("#editing_form #editing_prefix_string").val($('#prefixTable .selected td:eq(1)').text());
+            dialog.dialog("open");
+        });
+    });
+</script>
+
+
+<div id="adding_dialog_form" title="Add prefix">
+    <p class="validateTips">All form fields are required.</p>
+
+    <form id ="adding_form">
+        <fieldset>
+            <label for="prefix_id">Id</label>
+            <input type="text" name="Id" id="prefix_id" class="text ui-widget-content ui-corner-all">
+            <label for="prefix_string">Prefix</label>
+            <input type="text" name="email" id="prefix_string" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+
+<div id="editing_dialog_form" title="Edit prefix">
+    <p class="validateTips">All form fields are required.</p>
+
+    <form id="editing_form">
+        <fieldset>
+            <label for="editing_prefix_string">Prefix</label>
+            <input type="text" name="editing_prefix_string" id="editing_prefix_string" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
 
 <table id="prefixTable" class="display dt-left" style="width: 50%; float: left">
     <thead>
@@ -86,15 +325,15 @@
 </table>
 
 <p>
-    <button class="button_jqui">Добавить</button>
-    <button  class="button_jqui" id="edit_button" >Изменить</button>
-    <button  class="button_jqui" id="remove_button">Удалить</button>
+    <button class="button_jqui" id="add_button">Добавить</button>
+    <button class="button_jqui" id="edit_button">Изменить</button>
+    <button class="button_jqui" id="remove_button">Удалить</button>
 <p>
 
-    <div id ="edit_div" style="border: solid 1px black; width: 200px;padding: 5px; display:none">
+    <div id="edit_div" style="border: solid 1px black; width: 200px;padding: 5px; display:none">
         <input type="text" id="edit_Id" /><br /><br />
-        <input type="text" id="edit_network"/><br/><br/>
-        <button class="button_jqui" id ="edit_ok">Ok</button>
+        <input type="text" id="edit_network" /><br /><br />
+        <button class="button_jqui" id="edit_ok">Ok</button>
     </div>
 
 

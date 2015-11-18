@@ -1,3 +1,4 @@
 ﻿.dataTables_wrapper .ui-toolbar{
     width: 50%;
 }
+input.text { margin-bottom:12px; width:95%; padding: .4em; }

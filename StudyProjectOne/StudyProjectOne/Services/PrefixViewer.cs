@@ -22,7 +22,7 @@ namespace StudyProjectOne.Services
         public List<Prefix> GetPrefixies()
         {
             _repoPrefixes =
-                (from RepositoryEntity prefix in _repository.Read() select new Prefix(prefix.Id, prefix.Prefix)).ToList();
+                (from RepositoryEntity prefix in _repository.Read() select new Prefix(prefix.Id, prefix.Network)).ToList();
             return _repoPrefixes;
         }
 
@@ -30,6 +30,21 @@ namespace StudyProjectOne.Services
         {
             _repoPrefixes = GetPrefixies();
             _repoPrefixes.Remove(_repoPrefixes.Last(t => t.Id == id));
+            _repository.Update(_repoPrefixes);
+        }
+
+        public void AddPrefix(Prefix prefix)
+        {
+            _repoPrefixes = GetPrefixies();
+            _repoPrefixes.Add(prefix);
+            _repository.Update(_repoPrefixes);
+        }
+
+        public void UpdatePrefix(Prefix old_prefix, Prefix new_prefix)
+        {
+            _repoPrefixes = GetPrefixies();
+            _repoPrefixes.RemoveAll(x => x.Id == old_prefix.Id);
+            _repoPrefixes.Add(new_prefix);
             _repository.Update(_repoPrefixes);
         }
  
