@@ -244,19 +244,21 @@
 <script type="text/javascript">
     $(function () {
         var table = $('#spanningTable').DataTable({
-            "dataSrc": "",
+
             "columns": [
-            { "data": "Id" },
-            { "data": "PrefixString" }
+               { data: "Prefix.Id" },
+               { data: "Prefix.PrefixString" },
+               { data: 'ChildList[, ].PrefixString'}
             ]
+
         });
         var dialog = $("#spanning_dialog_form").dialog({
             autoOpen: false,
-            height: 450,
-            width: 450,
+            height: 800,
+            width: 600,
             modal: true,
             buttons: {
-                Cancel: function () {
+                Close: function () {
                     dialog.dialog("close");
                 }
             },
@@ -265,12 +267,11 @@
 
         });
         $("#spanning_button").button().on("click", function () {
-
             table.clear();
             $.ajax({
 
                 "url": '@Url.Action("ViewSpanningPrefixes", "Home")',
-                data: '{ input: 0 }',
+                "dataSrc": '',
                 success: function (data) {
                     table.rows.add(data).draw();
                 }
@@ -312,19 +313,20 @@
 
 <div id="spanning_dialog_form" title="View spanninng prefixies">
     <form id="">
-        <table id="spanningTable" class="display dt-left" style="width: 80%; float: left">
+        <table id="spanningTable" class="display" width="100%">
             <thead>
                 <tr>
                     <td>Id</td>
                     <td>Prefix</td>
+                    <td>Childs</td>
                 </tr>
             </thead>
         </table>
     </form>
 </div>
 
-<div style="width: min-content * 2">
-    <table id="prefixTable" class="display dt-left" style="width: 50%; float: left">
+
+    <table id="prefixTable" width="100%" >
         <thead>
             <tr>
                 <td>Id</td>
@@ -332,7 +334,7 @@
             </tr>
         </thead>
     </table>
-</div>
+
 <p>
     <button class="button_jqui" id="add_button">Добавить</button>
     <button class="button_jqui" id="edit_button">Изменить</button>

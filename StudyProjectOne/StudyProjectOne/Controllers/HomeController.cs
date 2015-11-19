@@ -13,6 +13,7 @@ namespace StudyProjectOne.Controllers
     public class HomeController : Controller
     {
         private readonly PrefixManipulator _prefixManipulator;
+
         public HomeController()
         {
             var repo_path = AppDomain.CurrentDomain.BaseDirectory + "../Input.txt";
@@ -23,15 +24,17 @@ namespace StudyProjectOne.Controllers
         {
             return View();
         }
-        
+
         public JsonResult ViewPrefixes()
         {
             return Json(_prefixManipulator.PrefixViewList, JsonRequestBehavior.AllowGet);
         }
+
         public JsonResult ViewSpanningPrefixes()
         {
-            return Json(_prefixManipulator.SpanningDict().Select(t => new PrefixViewModel(t.Key.Id, t.Key.PrefixString)), JsonRequestBehavior.AllowGet);
+            return Json(_prefixManipulator.SpanningList(), JsonRequestBehavior.AllowGet);
         }
+
         public void RemovePrefix(string id)
         {
             _prefixManipulator.RemovePrefix(id);
