@@ -7,45 +7,35 @@ using StudyProjectOne.Repository;
 
 namespace StudyProjectOne.Services
 {
-    /// <summary>
-    ///     Метод отображения таблицы с префиксами
-    /// </summary>
+   
     internal class PrefixManipulator
     {
         private readonly IRepository _repository;
         private List<RepositoryEntity> _prefixRepositoryList;
         private List<PrefixViewModel> _prefixViewList;
 
+        public List<PrefixViewModel> PrefixViewList
+        {
+            get
+            {
+                _prefixViewList = PrefixList.Select(t => new PrefixViewModel(t.Id, t.PrefixString)).ToList();
+                return _prefixViewList;
+            }
+        }
+        public List<RepositoryEntity> PrefixRepositoryList
+        {
+            get
+            {
+                _prefixRepositoryList = PrefixList.Select(t => new RepositoryEntity(t.Id, t.PrefixString)).ToList();
+                return _prefixRepositoryList;
+            }
+        }
+        public List<Prefix> PrefixList { get; private set; }
 
         public PrefixManipulator(IRepository repository)
         {
             _repository = repository;
             PrefixList = _repository.Read().Select(t => new Prefix(t.Id, t.PrefixString)).ToList();
-        }
-
-        public List<PrefixViewModel> PrefixViewList
-        {
-            get
-            {
-                _prefixViewList = PrefixList.Select(t => new PrefixViewModel(t.Id, t.ToString())).ToList();
-                return _prefixViewList;
-            }
-        }
-
-        public List<RepositoryEntity> PrefixRepositoryList
-        {
-            get
-            {
-                _prefixRepositoryList = PrefixList.Select(t => new RepositoryEntity(t.Id, t.ToString())).ToList();
-                return _prefixRepositoryList;
-            }
-        }
-
-        public List<Prefix> PrefixList { get; private set; }
-
-        public List<PrefixViewModel> GetPrefixies()
-        {
-            return PrefixList.Select(t => new PrefixViewModel(t.Id, t.ToString())).ToList();
         }
 
         public void RemovePrefix(string id)
@@ -67,14 +57,14 @@ namespace StudyProjectOne.Services
             _repository.Update(PrefixRepositoryList);
         }
 
-        public Dictionary<PrefixViewModel, List<PrefixViewModel>> SpanningDict()
+        //Можно построить полное дерево из PrefixNode, спускаясь по значениям словаря 
+        public List<NodeViewModel> SpanningList()
         {
             var sorted_prefix_list = PrefixList;
             sorted_prefix_list.Sort(new PrefixComparer());
-
             var out_prefix_list = new PrefixNode(new Prefix("0", "0.0.0.0/0"));
-
             var i = 0;
+
             while (i < sorted_prefix_list.Count - 1)
             {
                 var current_prefix = sorted_prefix_list[i];
@@ -94,15 +84,18 @@ namespace StudyProjectOne.Services
                 }
                 i++;
             }
-            if (i == sorted_prefix_list.Count - 1)
+            //Добавить единственный первый или последний префикс без родителя
+            if (i == sorted_prefix_list.Count - 1) 
             {
                 out_prefix_list.Childs.Add(sorted_prefix_list[i].UniqueNetworkId, new PrefixNode(sorted_prefix_list[i]));
             }
+            
+            var list_out = out_prefix_list.Childs.Values.Select(node =>
+                new NodeViewModel{Prefix = new PrefixViewModel(node.Node.Id, node.Node.PrefixString),
+                    ChildList = node.Childs.Select(t => new PrefixViewModel(t.Value.Node.Id, t.Value.Node.PrefixString)).ToList()})
+                        .ToList();
 
-            var dict_out = out_prefix_list.Childs.Values.ToDictionary(node =>
-                new PrefixViewModel(node.Node.Id, node.Node.ToString()), node =>
-                    node.Childs.Select(t => new PrefixViewModel(t.Value.Node.Id, t.Value.Node.ToString())).ToList());
-            return dict_out;
+            return list_out;
         }
 
         class PrefixComparer : Comparer<Prefix>

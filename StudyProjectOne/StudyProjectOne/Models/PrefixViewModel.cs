@@ -5,6 +5,9 @@
     /// </summary>
     public class PrefixViewModel
     {
+        public string Id { get; set; }
+        public string PrefixString { get; set; }
+
         /// <summary>
         ///     Конструктор для преобразования из JSON
         /// </summary>
@@ -17,8 +20,5 @@
             Id = id;
             PrefixString = prefix_string;
         }
-
-        public string Id { get; set; }
-        public string PrefixString { get; set; }
     }
 }

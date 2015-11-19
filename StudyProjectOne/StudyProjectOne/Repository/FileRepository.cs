@@ -27,8 +27,8 @@ namespace StudyProjectOne.Repository
             return lines_to_return;
         }
 
+        //Может заменить все 3 (Update, Insert, Remove) на write()?
         public void Update(ICollection<RepositoryEntity> collection_to_update)
-            //Может заменить все 3 (Update, Insert, Remove) на write()?
         {
             var lines_to_write =
                 collection_to_update.Aggregate("", (current, t) => current + t.Id + "," + t.PrefixString + "\n");
