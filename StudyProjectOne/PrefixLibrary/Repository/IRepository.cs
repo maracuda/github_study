@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace StudyProjectOne.Repository
+namespace PrefixLibrary.Repository
 {
     /// <summary>
     ///     Интерфейс репозитория
     /// </summary>
-    internal interface IRepository
+    public interface IRepository
     {
         ICollection<RepositoryEntity> Read();
         void Update(ICollection<RepositoryEntity> collection_to_update);

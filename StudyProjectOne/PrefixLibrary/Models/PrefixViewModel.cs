@@ -1,4 +1,4 @@
-﻿namespace StudyProjectOne.Models
+﻿namespace PrefixLibrary.Models
 {
     /// <summary>
     ///     Модель префикса для передачи во View

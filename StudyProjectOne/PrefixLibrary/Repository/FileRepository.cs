@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace StudyProjectOne.Repository
+namespace PrefixLibrary.Repository
 {
     /// <summary>
     ///     Класс для работы с репозиторием из файла

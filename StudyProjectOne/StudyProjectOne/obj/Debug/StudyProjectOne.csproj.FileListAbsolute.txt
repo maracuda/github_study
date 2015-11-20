@@ -118,3 +118,5 @@ U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\ru\System.Web.WebPages.
 U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.csprojResolveAssemblyReference.cache
 U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.dll
 U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.pdb
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.dll
+U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.pdb
