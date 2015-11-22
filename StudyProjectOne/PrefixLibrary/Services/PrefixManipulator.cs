@@ -10,7 +10,7 @@ namespace PrefixLibrary.Services
     /// </summary>
     public class PrefixManipulator
     {
-        private readonly IRepository _repository;
+        private readonly IRepository<RepositoryEntity> _repository;
         private List<RepositoryEntity> _prefixRepositoryList;
         private List<PrefixViewModel> _prefixViewList;
 
@@ -18,10 +18,10 @@ namespace PrefixLibrary.Services
         ///     Конструктор класса
         /// </summary>
         /// <param name="repository">Экземпляр репозитория</param>
-        public PrefixManipulator(IRepository repository)
+        public PrefixManipulator(IRepository<RepositoryEntity> repository)
         {
             _repository = repository;
-            PrefixList = _repository.Read().Select(t => new Prefix(t.Id, t.PrefixString)).ToList();
+            PrefixList = _repository.GetPrefixList().Select(t => new Prefix(t.Id, t.PrefixString)).ToList();
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace PrefixLibrary.Services
         public void RemovePrefix(string id)
         {
             PrefixList.Remove(PrefixList.Last(t => t.Id == id));
-            _repository.Remove(PrefixRepositoryList);
+            _repository.Delete(id);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace PrefixLibrary.Services
         public void AddPrefix(PrefixViewModel prefix)
         {
             PrefixList.Add(new Prefix(prefix.Id, prefix.PrefixString));
-            _repository.Insert(PrefixRepositoryList);
+            _repository.Create(new RepositoryEntity(prefix.Id, prefix.PrefixString));
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace PrefixLibrary.Services
         {
             PrefixList.RemoveAll(x => x.Id == old_prefix.Id);
             PrefixList.Add(new Prefix(new_prefix.Id, new_prefix.PrefixString));
-            _repository.Update(PrefixRepositoryList);
+            _repository.Update(new RepositoryEntity(old_prefix.Id, old_prefix.PrefixString), new RepositoryEntity(new_prefix.Id, new_prefix.PrefixString ));
         }
 
         //Можно построить полное дерево из PrefixNode, спускаясь по значениям словаря 

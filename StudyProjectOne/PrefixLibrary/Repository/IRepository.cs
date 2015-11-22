@@ -5,11 +5,20 @@ namespace PrefixLibrary.Repository
     /// <summary>
     ///     Интерфейс репозитория
     /// </summary>
-    public interface IRepository
+    public interface IRepository<T>
+        where T : class
     {
-        ICollection<RepositoryEntity> Read();
-        void Update(ICollection<RepositoryEntity> collection_to_update);
-        void Insert(ICollection<RepositoryEntity> collection_to_insert);
-        void Remove(ICollection<RepositoryEntity> collection_to_remove);
+        // получение всех объектов
+        IEnumerable<T> GetPrefixList();
+        // получение одного объекта по id
+        T GetPrefix(string id);
+        // создание объекта
+        void Create(T item);
+        // обновление объекта
+        void Update(T item_old, T item_new);
+        // удаление объекта по id
+        void Delete(string id);
+        // сохранение изменений
+        void Save();  
     }
 }

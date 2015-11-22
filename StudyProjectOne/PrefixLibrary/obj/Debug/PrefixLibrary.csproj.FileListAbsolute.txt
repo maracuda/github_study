@@ -2,5 +2,4 @@ U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.dll
 U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.pdb
 U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.dll
 U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.pdb
-U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.dll.CodeAnalysisLog.xml
-U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.dll.lastcodeanalysissucceeded
+U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.csprojResolveAssemblyReference.cache
