@@ -49,7 +49,7 @@ namespace PrefixLibrary.Services
         /// </summary>
         /// <param name="dotted_ip"></param>
         /// <returns></returns>
-        private static long Dot2LongIP(string dotted_ip)
+        public static long Dot2LongIP(string dotted_ip)
         {
             var num = 0d;
 

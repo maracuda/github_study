@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using PrefixLibrary.Models;
 using PrefixLibrary.Repository;
 
@@ -82,7 +85,7 @@ namespace PrefixLibrary.Services
         {
             PrefixList.RemoveAll(x => x.Id == old_prefix.Id);
             PrefixList.Add(new Prefix(new_prefix.Id, new_prefix.PrefixString));
-            _repository.Update(new RepositoryEntity(old_prefix.Id, old_prefix.PrefixString), new RepositoryEntity(new_prefix.Id, new_prefix.PrefixString ));
+            _repository.Update(new RepositoryEntity(old_prefix.Id, old_prefix.PrefixString), new RepositoryEntity(new_prefix.Id, new_prefix.PrefixString));
         }
 
         //Можно построить полное дерево из PrefixNode, спускаясь по значениям словаря 
@@ -134,6 +137,48 @@ namespace PrefixLibrary.Services
                 .ToList();
 
             return list_out;
+        }
+
+        public static string ValidatePrefixString(string prefix_string)
+        {
+            var result = "";
+            var regex = new Regex(".+/.+");
+            if (regex.IsMatch(prefix_string))
+            {
+                var network = prefix_string.Split('/')[0];
+                var prefix_length = 0;
+
+                try
+                {
+                    IPAddress.Parse(network);
+                    prefix_length = int.Parse(prefix_string.Split('/')[1]);
+                }
+                catch (Exception)
+                {
+                    return "Неверный формат, используйте x.x.x.x/y";
+                }
+                
+                if (prefix_length < 1 || prefix_length > 32)
+                {
+                    return "Неверная длина префикса";
+                }
+
+                var a = Prefix.Dot2LongIP(network);
+                var b = (2 << prefix_length) - 1;
+
+                if (Prefix.Dot2LongIP(network) != (Prefix.Dot2LongIP(network) & (2 << prefix_length) - 1))
+                {
+                    return "Такой подсети не существует";
+                }
+
+                return "";
+            }
+            else
+            {
+                result = "Неверный формат, используйте x.x.x.x/y";
+            }
+
+            return result;
         }
     }
 }

@@ -3,3 +3,8 @@ U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.pdb
 U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.dll
 U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.pdb
 U:\Repo\Study1\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.csprojResolveAssemblyReference.cache
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.dll
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.pdb
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.csprojResolveAssemblyReference.cache
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.dll
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.pdb

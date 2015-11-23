@@ -1,0 +1,8 @@
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.Tests.dll
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.Tests.pdb
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.csprojResolveAssemblyReference.cache
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.dll
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.pdb
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.dll
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.pdb
+E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\NUnit.Framework-Bin-nunit.framework.dll

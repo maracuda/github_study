@@ -120,3 +120,5 @@ U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.d
 U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\obj\Debug\StudyProjectOne.pdb
 U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.dll
 U:\Repo\Study1\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.pdb
+E:\Ilya_Repo\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.dll
+E:\Ilya_Repo\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.pdb

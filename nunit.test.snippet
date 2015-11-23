@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>NUnit Test Method</Title>
+			<Author>korolev.andrey</Author>
+			<Description>Create empty NUnit Test Method.</Description>
+			<Shortcut>ntest</Shortcut>
+        </Header>
+        <Snippet>
+			<Declarations>
+				<Literal>
+					<ID>when</ID>
+					<ToolTip>Имя проверяемого метода или класса</ToolTip>
+					<Default>TestMethod</Default>
+				</Literal>
+				<Literal>
+					<ID>given</ID>
+					<ToolTip>Задаваемые в тесте параметры</ToolTip>
+					<Default>Parameters</Default>
+				</Literal>
+				<Literal>
+					<ID>then</ID>
+					<ToolTip>Ожидаемое поведение</ToolTip>				
+					<Default>ExceptionThrown</Default>
+				</Literal>
+			</Declarations>
+            <Code Language="csharp"><![CDATA[[Test()]
+		public void $when$_$given$_$then$()
+		{
+			$selected$ $end$
+		}]]>
+		    </Code>
+        </Snippet>
+		
+    </CodeSnippet>
+</CodeSnippets>
