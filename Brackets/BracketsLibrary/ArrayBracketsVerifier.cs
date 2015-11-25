@@ -8,15 +8,15 @@ namespace BracketsLibrary
 {
     public class ArrayBracketsVerifier : BracketsVerifierBase
     {
-        public ArrayBracketsVerifier(string input_string, char[] valid_brackets)
-            : base(input_string, valid_brackets)
+        public ArrayBracketsVerifier(string input_enumerable, char[] valid_brackets)
+            : base(input_enumerable, valid_brackets)
         {
         }
 
         public override bool CkeckBrackets()
         {
             var i = 0;
-            var char_list = new List<char>(input_string);
+            var char_list = new List<char>(input_enumerable);
 
             while (i < char_list.Count - 1)
             {

@@ -8,6 +8,6 @@ namespace StrategyBracketsLibrary
 {
     public interface IBracketsVerifier
     {
-        bool CkeckBrackets(IEnumerable<char> input_enumerabl);
+        bool CkeckBrackets(IEnumerable<char> input_enumerable);
     }
 }

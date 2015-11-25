@@ -9,14 +9,16 @@ namespace BracketsLibrary
     public abstract class BracketsVerifierBase : IBracketsVerifier
     {
         private char[] _validBrackets;
-        protected string input_string;
+        protected string input_enumerable;
 
-        public BracketsVerifierBase(string input_string, char[] valid_brackets)
+        public BracketsVerifierBase(string input_enumerable, char[] valid_brackets)
         {
-            this.input_string = input_string;
+            this.input_enumerable = input_enumerable;
+            if (input_enumerable == "")
+                throw new ArgumentException();
             _validBrackets = valid_brackets;
-            if (!ValidateInput(input_string))
-                throw new FormatException();
+            if (!ValidateInput(input_enumerable))
+                throw new ArgumentException();
         }
 
         private bool ValidateInput(string input_array)

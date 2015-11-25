@@ -4,7 +4,7 @@ namespace BracketsLibrary
 {
     public class StackBracketsVerifier : BracketsVerifierBase
     {
-        public StackBracketsVerifier(string input_string, char[] valid_brackets) : base(input_string, valid_brackets)
+        public StackBracketsVerifier(string input_enumerable, char[] valid_brackets) : base(input_enumerable, valid_brackets)
         {
         }
 
@@ -12,7 +12,7 @@ namespace BracketsLibrary
         {
             var st = new Stack<char>();
 
-            foreach (var t in input_string)
+            foreach (var t in input_enumerable)
             {
                 if (st.Count != 0 && (t == st.Peek() + 1 || t == st.Peek() + 2))
                     st.Pop();

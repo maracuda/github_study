@@ -11,16 +11,18 @@ namespace StrategyBracketsLibrary
         public BracketsVerifier(string input_string, char[] valid_brackets, IBracketsVerifier verifier)
         {
             this.input_string = input_string;
+            if (input_string == "")
+                throw new ArgumentException();
             _validBrackets = valid_brackets;
             Verifier = verifier;
 
             if (!ValidateInput(input_string))
-                throw new FormatException();
+                throw new ArgumentException();
         }
 
         public IBracketsVerifier Verifier { get; set; }
 
-        public bool VerifySequence()
+        public bool CheckBrackets()
         {
            return Verifier.CkeckBrackets(input_string);
         }
