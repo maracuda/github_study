@@ -6,3 +6,11 @@ E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.T
 E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.dll
 E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.pdb
 E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\NUnit.Framework-Bin-nunit.framework.dll
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.Tests.dll
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.Tests.pdb
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\NUnit.Framework-Bin-nunit.framework.dll
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.dll
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.pdb
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.dll
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.pdb

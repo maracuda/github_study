@@ -1,75 +1,79 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PrefixLibrary.Models;
 
 namespace PrefixLibrary.Repository
 {
-    public class FileRepository : IRepository<RepositoryEntity>
+    public class FileRepository : IRepository<PrefixView>, IPrefixValidator
     {
         private readonly string _path;
-        private IEnumerable<RepositoryEntity> _inputEnumerable;
+        private Dictionary<string, PrefixView> _repositoryCache;
 
         public FileRepository(string path)
         {
             _path = path;
         }
 
-        public IEnumerable<RepositoryEntity> GetPrefixList()
+        private HashSet<string> RepositoryValuesSet
         {
-            var reader = new StreamReader(File.OpenRead(_path));
-            _inputEnumerable = (from line in reader.ReadToEnd().Split('\n').Where(t => t != "")
-                                   let id = line.Split(',')[0]
-                                   let prefix = line.Split(',')[1]
-                                   select new RepositoryEntity(id, prefix));
-            reader.Close();
-            return _inputEnumerable;
+            get { return new HashSet<string>(RepositoryCache.Values.Select(t => t.PrefixString)); }
         }
 
-        public RepositoryEntity GetPrefix(string id)
+        private Dictionary<string, PrefixView> RepositoryCache
         {
-            return _inputEnumerable.First(t => t.Id == id);
+            get
+            {
+                return _repositoryCache ?? (_repositoryCache = File.ReadLines(_path)
+                    .Select(t => new PrefixView(t.Split(',')[0], t.Split(',')[1]))
+                    .ToDictionary(t => t.Id, t => t));
+            }
         }
 
-        public void Create(RepositoryEntity item)
+        public string IsPrefixStringUnique(string prefix_string)
         {
-            var buffer_list = _inputEnumerable.ToList();
-            buffer_list.Add(item);
-            _inputEnumerable = buffer_list.AsEnumerable();
-            Write(_inputEnumerable);
+            return RepositoryValuesSet.Contains(prefix_string) ? "Такой префикс существует!" : "";
         }
 
-        public void Update(RepositoryEntity item_old, RepositoryEntity item_new)
+        public string IsPrefixIdUnique(string id)
         {
-            var buffer_list = _inputEnumerable.ToList();
-            buffer_list.RemoveAll(t => t.Id == item_old.Id);
-            buffer_list.Add(item_new);
-            _inputEnumerable = buffer_list.AsEnumerable();
-            Write(_inputEnumerable);
+            //Странности, если заменить RepositoryCache на _repositoryCache, то _repositoryCache = Null, но ведь
+            //не должен. Уже была операция чтения. А если подождать 10 секунд, то становится not null
+            return RepositoryCache.ContainsKey(id) ? "Префикс с таким Id существует!" : "";
+        }
+
+        public void Add(PrefixView entity)
+        {
+            RepositoryCache.Add(entity.Id, entity);
+            //Как по-человечески записать одну строку? подумать...
+            File.AppendAllLines(_path, new[] {entity.ToString()});
         }
 
         public void Delete(string id)
         {
-            var buffer_list = _inputEnumerable.ToList();
-            buffer_list.RemoveAll(t => t.Id == id);
-            _inputEnumerable = buffer_list.AsEnumerable();
-            Write(_inputEnumerable);
+            RepositoryCache.Remove(id);
+            SaveCache();
         }
 
-        public void Save()
+        public void Update(string id, PrefixView entity)
         {
-            throw new NotImplementedException();
+            RepositoryCache[id] = entity;
+            SaveCache();
         }
 
-        private void Write(IEnumerable<RepositoryEntity> enumerable_to_write)
+        public PrefixView[] ReadAll()
         {
-            var lines_to_write =
-                enumerable_to_write.Aggregate("", (current, t) => current + t.Id + "," + t.PrefixString + "\n");
-            var writer = new StreamWriter(_path);
-            writer.Write(lines_to_write);
-            writer.Close();
+            return RepositoryCache.Values.ToArray();
+        }
+
+        public PrefixView Read(string id)
+        {
+            return RepositoryCache[id];
+        }
+
+        private void SaveCache()
+        {
+            File.WriteAllLines(_path, RepositoryCache.Values.Select(t => t.ToString()));
         }
     }
 }

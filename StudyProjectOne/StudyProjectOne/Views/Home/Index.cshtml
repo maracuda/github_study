@@ -119,8 +119,6 @@
             height: 350,
             width: 350,
             modal: true,
-
-
             buttons: {
                 "Add": {
                     text: "Add",
@@ -128,13 +126,15 @@
                     click: function () {
                         var json = { "Id": prefix_id.val(), "PrefixString": prefix_string.val() };
                         $.ajax({
-                            url: '@Url.Action("ValidatePrefixString", "Home")',
-                            dataType: 'json',
+                            url: '@Url.Action("ValidatePrefixStringForAdding", "Home")',
                             data: (json),
-                            success: function () {
-                                alert("!!!");
-                            },
-                            error: alert("error")
+                            success: function (data) {
+                                if (data != "") {
+                                    updateTips(data);
+                                } else {
+                                    addPrefix();
+                                }
+                            }
                         });
                     }
                     //addPrefix();
@@ -214,13 +214,10 @@
                     prefix_id = $('#prefixTable .selected td:eq(0)');
                 if (prefix_string.val() != cell.text()) {
 
-                    var json = [
-                        { "Id": prefix_id.text(), "PrefixString": cell.text() },
-                        { "Id": prefix_id.text(), "PrefixString": prefix_string.val() }
-                    ];
+                    var json = { "Id": prefix_id.text(), "PrefixString": prefix_string.val() };
                     $.ajax({
                         url: '@Url.Action("UpdatePrefix", "Home")',
-                        data: ({ json_string: JSON.stringify(json) })
+                        data: (json)
                     });
                     cell.text(prefix_string.val());
                 }
@@ -237,7 +234,26 @@
             width: 350,
             modal: true,
             buttons: {
-                "Edit": editPrefix,
+                Edit: {
+                    text: "Edit",
+                    id: "edit_dialog_button",
+                    click: function () {
+                    var prefix_id = $('#prefixTable .selected td:eq(0)');
+                        var json = { "Id": prefix_id.text(), "PrefixString": prefix_string.val() };
+                        $.ajax({
+                            url: '@Url.Action("ValidatePrefixStringForEditing", "Home")',
+                            data: (json),
+                            success: function (data) {
+                                if (data != "") {
+                                    updateTips(data);
+                                } else {
+                                    editPrefix();
+                                }
+                            }
+                        });
+                    }
+                    //addPrefix();
+                },
                 Cancel: function () {
                     dialog.dialog("close");
                 }

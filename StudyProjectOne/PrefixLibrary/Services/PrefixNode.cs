@@ -7,7 +7,7 @@ namespace PrefixLibrary.Services
     /// </summary>
     public class PrefixNode
     {
-        public PrefixNode(Prefix node)
+        public PrefixNode(EditablePrefix node)
         {
             Node = node;
             Childs = new SortedList<long, PrefixNode>();
@@ -16,7 +16,7 @@ namespace PrefixLibrary.Services
         /// <summary>
         ///     Вершина - префикс
         /// </summary>
-        public Prefix Node { get; set; }
+        public EditablePrefix Node { get; set; }
 
         /// <summary>
         ///     Список потомков, отсортированный список для возможного построения полного дерева

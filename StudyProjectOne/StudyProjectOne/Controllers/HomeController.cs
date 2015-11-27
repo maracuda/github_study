@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
-using Newtonsoft.Json;
 using PrefixLibrary.Models;
 using PrefixLibrary.Repository;
 using PrefixLibrary.Services;
@@ -12,66 +8,106 @@ namespace StudyProjectOne.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly PrefixManipulator _prefixManipulator;
+        private readonly IRepository<PrefixView> _repository;
 
         public HomeController()
         {
             var repo_path = AppDomain.CurrentDomain.BaseDirectory + "../Input.txt";
-            _prefixManipulator = new PrefixManipulator(new FileRepository(repo_path));
+            _repository = new FileRepository(repo_path);
         }
+
         /// <summary>
-        /// Вывод главного представления
+        ///     Вывод главного представления
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
+
         /// <summary>
-        /// Выводит содержимое репозитория
+        ///     Выводит содержимое репозитория
         /// </summary>
         /// <returns>Список строк для таблицы</returns>
         public JsonResult ViewPrefixes()
         {
-            return Json(_prefixManipulator.PrefixViewList, JsonRequestBehavior.AllowGet);
+            return Json(_repository.ReadAll(), JsonRequestBehavior.AllowGet);
         }
+
         /// <summary>
-        /// Выводит содержимое покрывающего набора
+        ///     Выводит содержимое покрывающего набора
         /// </summary>
         /// <returns>Список вершин и потомков</returns>
         public JsonResult ViewSpanningPrefixes()
         {
-            return Json(_prefixManipulator.SpanningList(), JsonRequestBehavior.AllowGet);
+            var spanning_tree_builder = new SpanningTreeBuilder(_repository.ReadAll());
+            return Json(spanning_tree_builder.SpanningList(), JsonRequestBehavior.AllowGet);
         }
+
         /// <summary>
-        /// Метод удаления подсети
+        ///     Метод удаления подсети
         /// </summary>
         /// <param name="id">Строковый идентификатор префикса</param>
         public void RemovePrefix(string id)
         {
-            _prefixManipulator.RemovePrefix(id);
-        }
-        /// <summary>
-        /// Метод добавления подсети
-        /// </summary>
-        /// <param name="prefix_view">Модель представления префикса</param>
-        public void AddPrefix(PrefixViewModel prefix_view)
-        {
-            _prefixManipulator.AddPrefix(prefix_view);
-        }
-        /// <summary>
-        /// Метод изменения префикса
-        /// </summary>
-        /// <param name="json_string">Пара префиксов: старый, новый</param>
-        public void UpdatePrefix(string json_string)
-        {
-            var prefix_pair = JsonConvert.DeserializeObject<List<PrefixViewModel>>(json_string);
-            _prefixManipulator.UpdatePrefix(prefix_pair.First(), prefix_pair.Last());
+            _repository.Delete(id);
         }
 
-        public string ValidatePrefixString(PrefixViewModel prefix_view_model)
+        /// <summary>
+        ///     Метод добавления подсети
+        /// </summary>
+        /// <param name="prefix_view">Модель представления префикса</param>
+        public void AddPrefix(PrefixView prefix_view)
         {
-            return PrefixManipulator.ValidatePrefixString(prefix_view_model.PrefixString);
+            _repository.Add(new PrefixView(prefix_view.Id, prefix_view.PrefixString));
+        }
+
+        /// <summary>
+        ///     Метод изменения префикса
+        /// </summary>
+        /// <param name="prefix_view">Пара префиксов: старый, новый</param>
+        public void UpdatePrefix(PrefixView prefix_view)
+        {
+            _repository.Update(prefix_view.Id, new PrefixView(prefix_view.Id, prefix_view.PrefixString));
+        }
+
+        /// <summary>
+        ///     Валидация входных данных при добавлении нового элемента
+        /// </summary>
+        /// <param name="prefix_view_model"></param>
+        /// <returns></returns>
+        public string ValidatePrefixStringForAdding(PrefixView prefix_view_model)
+        {
+            //Или исопользовать статический UniqueValidator, но засылать туда коллекцию префиксов
+            //Или писать отдельный валидатор, который принимает репозиторий. Или так криво приводить... Подумать...
+            var validator = (IPrefixValidator) _repository;
+
+            var format_validation_result = PrefixValidator.ValidatePrefixString(prefix_view_model.PrefixString);
+            var unique_validation_result =
+                validator.IsPrefixIdUnique(prefix_view_model.Id) +
+                validator.IsPrefixStringUnique(prefix_view_model.PrefixString);
+
+            return format_validation_result == ""
+                ? unique_validation_result == ""
+                    ? ""
+                    : unique_validation_result
+                : format_validation_result;
+        }
+
+        public string ValidatePrefixStringForEditing(PrefixView prefix_view_model)
+        {
+            //Или исопользовать статический UniqueValidator, но засылать туда коллекцию префиксов
+            //Или писать отдельный валидатор, который принимает репозиторий. Или так криво приводить... Подумать...
+            var validator = (IPrefixValidator)_repository;
+
+            var format_validation_result = PrefixValidator.ValidatePrefixString(prefix_view_model.PrefixString);
+            var unique_validation_result =validator.IsPrefixStringUnique(prefix_view_model.PrefixString);
+
+            return format_validation_result == ""
+                ? unique_validation_result == ""
+                    ? ""
+                    : unique_validation_result
+                : format_validation_result;
         }
     }
 }

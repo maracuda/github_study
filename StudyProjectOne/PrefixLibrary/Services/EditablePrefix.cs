@@ -6,9 +6,9 @@ namespace PrefixLibrary.Services
     /// <summary>
     ///     Класс префикса, хранит адрес сети в числовом виде
     /// </summary>
-    public class Prefix
+    public class EditablePrefix
     {
-        public Prefix(string id, string prefix_string)
+        public EditablePrefix(string id, string prefix_string)
         {
             Id = id;
             PrefixString = prefix_string;
@@ -65,9 +65,9 @@ namespace PrefixLibrary.Services
         /// <summary>
         ///     Реализация абстрактного класса Comparer для сортировки
         /// </summary>
-        public class PrefixComparer : Comparer<Prefix>
+        public class PrefixComparer : Comparer<EditablePrefix>
         {
-            public override int Compare(Prefix x, Prefix y)
+            public override int Compare(EditablePrefix x, EditablePrefix y)
             {
                 if (Equals(x, y)) return 0;
                 return x.Network == y.Network

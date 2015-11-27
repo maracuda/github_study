@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PrefixLibrary.Repository;
 
 namespace PrefixLibrary.Models
 {
@@ -7,7 +8,13 @@ namespace PrefixLibrary.Models
     /// </summary>
     public class NodeViewModel
     {
-        public PrefixViewModel Prefix { get; set; }
-        public List<PrefixViewModel> ChildList { get; set; }
+        /// <summary>
+        /// Вершина дерева
+        /// </summary>
+        public PrefixView Prefix { get; set; }
+        /// <summary>
+        /// Список потомков
+        /// </summary>
+        public List<PrefixView> ChildList { get; set; }
     }
 }

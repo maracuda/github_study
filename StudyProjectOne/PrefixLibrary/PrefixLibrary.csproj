@@ -40,14 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\NodeViewModel.cs" />
-    <Compile Include="Models\PrefixViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\FileRepository.cs" />
+    <Compile Include="Repository\IPrefixValidator.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\RepositoryEntity.cs" />
-    <Compile Include="Services\Prefix.cs" />
-    <Compile Include="Services\PrefixManipulator.cs" />
+    <Compile Include="Repository\FileRepository.cs" />
+    <Compile Include="Models\PrefixView.cs" />
+    <Compile Include="Services\EditablePrefix.cs" />
     <Compile Include="Services\PrefixNode.cs" />
+    <Compile Include="Services\PrefixValidator.cs" />
+    <Compile Include="Services\SpanningTreeBuilder.cs" />
+    <Compile Include="Services\UniqueValidator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
