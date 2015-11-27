@@ -119,12 +119,31 @@
             height: 350,
             width: 350,
             modal: true,
+
+
             buttons: {
-                "Add": addPrefix,
+                "Add": {
+                    text: "Add",
+                    id: "add_dialog_button",
+                    click: function () {
+                        var json = { "Id": prefix_id.val(), "PrefixString": prefix_string.val() };
+                        $.ajax({
+                            url: '@Url.Action("ValidatePrefixString", "Home")',
+                            dataType: 'json',
+                            data: (json),
+                            success: function () {
+                                alert("!!!");
+                            },
+                            error: alert("error")
+                        });
+                    }
+                    //addPrefix();
+                },
                 Cancel: function () {
                     dialog.dialog("close");
                 }
             },
+
             close: function () {
                 form[0].reset();
                 all_fields.removeClass("ui-state-error");
@@ -248,7 +267,7 @@
             "columns": [
                { data: "Prefix.Id" },
                { data: "Prefix.PrefixString" },
-               { data: 'ChildList[, ].PrefixString'}
+               { data: 'ChildList[, ].PrefixString' }
             ]
 
         });
@@ -326,14 +345,14 @@
 </div>
 
 
-    <table id="prefixTable" width="100%" >
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Prefix</td>
-            </tr>
-        </thead>
-    </table>
+<table id="prefixTable" width="100%">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Prefix</td>
+        </tr>
+    </thead>
+</table>
 
 <p>
     <button class="button_jqui" id="add_button">Добавить</button>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using PrefixLibrary.Models;
 using PrefixLibrary.Repository;
@@ -66,6 +67,11 @@ namespace StudyProjectOne.Controllers
         {
             var prefix_pair = JsonConvert.DeserializeObject<List<PrefixViewModel>>(json_string);
             _prefixManipulator.UpdatePrefix(prefix_pair.First(), prefix_pair.Last());
+        }
+
+        public string ValidatePrefixString(PrefixViewModel prefix_view_model)
+        {
+            return PrefixManipulator.ValidatePrefixString(prefix_view_model.PrefixString);
         }
     }
 }

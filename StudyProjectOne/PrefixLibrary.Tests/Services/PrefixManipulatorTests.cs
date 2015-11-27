@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
 using PrefixLibrary.Services;
-using NUnit.Framework;
 
-namespace PrefixLibrary.Services.Tests
+namespace PrefixLibrary.Tests.Services
 {
     [TestFixture()]
     public class PrefixManipulatorTests
@@ -21,6 +16,7 @@ namespace PrefixLibrary.Services.Tests
 
             Assert.AreEqual(expected, result);
         }
+
         [Test()]
         public void ValidatePrefixString_InvalidNetwork_InvalidFormatMessage()
         {
@@ -31,7 +27,8 @@ namespace PrefixLibrary.Services.Tests
 
             Assert.AreEqual(expected, result);
         }
-        [Test()]
+
+        [Test()]    
         public void ValidatePrefixString_InvalidPrefixLength_InvalidFormatMessage()
         {
             var prefix_to_test = "10.10.10.0/34";

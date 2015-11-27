@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using NUnit.Framework;
 using StrategyBracketsLibrary;
@@ -8,21 +9,35 @@ namespace StraregyBracketsLibrary.Tests
     [TestFixture]
     public class BracketsTest
     {
-        [Test]
-        public void CheckArrayBrackets_InvalidSequence_Fail()
+        [TestCase("()", true)]
+        [TestCase("())", false)]
+        public void CheckArrayBrackets_InvalidSequence_Fail(string input, bool expected)
         {
             var input_strings = new[]
             {
-                "}()()()()()()()()[][][][][]{{{{<><><>}}}}", "((((())))", "]{}",
+                "}()()()()()()()()[][][][][]{{{{<><><>}}}}",
+                "((((())))",
+                "]{}",
                 "][[[[]]]]<><><><><><><>()()()()(((<<<{{{}}}>>>)))"
             };
 
-            var result =
-                input_strings.All(
-                    t =>
-                        !(new BracketsVerifier(t, "<>{}[]()".ToCharArray(), new ArrayBracketsVerifier())).CheckBrackets());
+//            var result =
+//                input_strings.All(
+//                    t =>
+//                        !(new BracketsVerifier(t, "<>{}[]()".ToCharArray(), new ArrayBracketsVerifier())).CheckBrackets());
 
-            Assert.IsTrue(result);
+            var brackets_verifier = new BracketsVerifier(input, "<>{}[]()".ToCharArray(), new ArrayBracketsVerifier());
+            var result = brackets_verifier.CheckBrackets();
+            Assert.That(result, Is.EqualTo(expected));
+            Assert.AreEqual(expected, result);
+        }
+
+        private IEnumerable werwe
+        {
+            get
+            {
+                yield return new TestCaseData("werer","dfsf").SetName("sf");
+            }
         }
 
         [Test]

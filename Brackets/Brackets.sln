@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brackets", "Brackets\Brackets.csproj", "{AD504532-D43A-4629-B6C7-CE995788005A}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrategyBracketsLibrary", "StrategyBracketsLibrary\StrategyBracketsLibrary.csproj", "{D33CCB0B-5801-4873-A5FA-72A1C7BD3CBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StraregyBracketsLibrary.Tests", "StraregyBracketsLibrary.Tests\StraregyBracketsLibrary.Tests.csproj", "{CAA541E1-8D88-4113-AD81-70587969759E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueBrackets", "TrueBrackets\TrueBrackets.csproj", "{12F8EC9F-1CBD-4C9D-A6ED-AE94B08C1076}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CAA541E1-8D88-4113-AD81-70587969759E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAA541E1-8D88-4113-AD81-70587969759E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAA541E1-8D88-4113-AD81-70587969759E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12F8EC9F-1CBD-4C9D-A6ED-AE94B08C1076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12F8EC9F-1CBD-4C9D-A6ED-AE94B08C1076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12F8EC9F-1CBD-4C9D-A6ED-AE94B08C1076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12F8EC9F-1CBD-4C9D-A6ED-AE94B08C1076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
