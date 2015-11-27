@@ -124,3 +124,5 @@ E:\Ilya_Repo\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.dll
 E:\Ilya_Repo\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.pdb
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.dll
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\StudyProjectOne\bin\PrefixLibrary.pdb
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\StudyProjectOne\bin\StudyProjectOne.dll.CodeAnalysisLog.xml
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\StudyProjectOne\bin\StudyProjectOne.dll.lastcodeanalysissucceeded

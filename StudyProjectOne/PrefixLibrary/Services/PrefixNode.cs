@@ -19,7 +19,7 @@ namespace PrefixLibrary.Services
         public EditablePrefix Node { get; set; }
 
         /// <summary>
-        ///     Список потомков, отсортированный список для возможного построения полного дерева
+        ///     Список потомков, отсортированный для возможности построения полного дерева
         /// </summary>
         public SortedList<long, PrefixNode> Childs { get; set; }
     }

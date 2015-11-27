@@ -14,3 +14,5 @@ C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\P
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.dll
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\obj\Debug\PrefixLibrary.Tests.pdb
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.Tests.dll.CodeAnalysisLog.xml
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary.Tests\bin\Debug\PrefixLibrary.Tests.dll.lastcodeanalysissucceeded

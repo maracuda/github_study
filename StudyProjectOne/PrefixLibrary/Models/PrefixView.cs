@@ -5,6 +5,9 @@
     /// </summary>
     public class PrefixView
     {
+        /// <summary>
+        /// Конструктор для JSON
+        /// </summary>
         public PrefixView()
         {
         }

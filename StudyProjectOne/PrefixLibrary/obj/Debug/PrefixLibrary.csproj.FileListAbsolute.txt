@@ -10,6 +10,7 @@ E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.dll
 E:\Ilya_Repo\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.pdb
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.dll
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.pdb
-C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.dll
 C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary\obj\Debug\PrefixLibrary.pdb
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.dll.CodeAnalysisLog.xml
+C:\Users\Ilia\Documents\Visual Studio 2013\Projects\work\study\StudyProjectOne\PrefixLibrary\bin\Debug\PrefixLibrary.dll.lastcodeanalysissucceeded

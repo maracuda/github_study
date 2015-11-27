@@ -12,8 +12,10 @@ namespace PrefixLibrary.Services
         {
             Id = id;
             PrefixString = prefix_string;
-            Network = Dot2LongIP(prefix_string.Split('/')[0]);
-            PrefixLength = int.Parse(prefix_string.Split('/')[1]);
+
+            var prefix_id_pair = prefix_string.Split('/');
+            Network = Dot2LongIP(prefix_id_pair[0]);
+            PrefixLength = int.Parse(prefix_id_pair[1]);
         }
 
         /// <summary>
